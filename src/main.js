@@ -5,7 +5,7 @@ const demuxDecodeWorker = new Worker("./async_decoder.js"),
     canvasElement = document.querySelector('canvas'),
     bodyElement = document.querySelector('body'),
     supportedWebCodec = true, //ToDo consider if older browser should be supported or not, ones without WebCodec, since Tesla does support this might not be needed.
-    urlToFetch = `https://192.168.0.164:8081/getsocketport?w=${window.innerWidth}&h=${window.innerHeight}&webcodec=${supportedWebCodec}`;
+    urlToFetch = `http://192.168.0.164:8081/getsocketport?w=${window.innerWidth}&h=${window.innerHeight}&webcodec=${supportedWebCodec}`;
 
 let zoom = Math.max(1, window.innerHeight / 1080),
     appVersion = 0,
