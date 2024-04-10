@@ -23,6 +23,7 @@ html, body {
 canvas, video {
     width: auto;
     height: max(1080px, 100vh);
+    position:fixed;
 
 }
 
@@ -58,5 +59,6 @@ img {
     align-items: center; 
     max-width: 300px;   
     margin-bottom:30px;
+    position: fixed;
 }
 
