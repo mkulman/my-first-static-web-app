@@ -5,7 +5,7 @@ const demuxDecodeWorker = new Worker("./async_decoder.js"),
     canvasElement = document.querySelector('canvas'),
     bodyElement = document.querySelector('body'),
     supportedWebCodec = true, //ToDo consider if older browser should be supported or not, ones without WebCodec, since Tesla does support this might not be needed.
-    urlToFetch = `http://192.168.0.164:8081/getsocketport?w=${window.innerWidth}&h=${window.innerHeight}&webcodec=${supportedWebCodec}`;
+    urlToFetch = `https://teslaa.androidwheels.com:8081/getsocketport?w=${window.innerWidth}&h=${window.innerHeight}&webcodec=${supportedWebCodec}`;
 
 let zoom = Math.max(1, window.innerHeight / 1080),
     appVersion = 0,
@@ -267,7 +267,7 @@ let ttsPCMSocket;
 
 
 function startAudio(){
-    mediaPCMSocket = new WebSocket(`wss://192.168.0.164:${port+1}`);
+    mediaPCMSocket = new WebSocket(`wss://teslaa.androidwheels.com:${port+1}`);
     mediaPCMSocket.binaryType = "arraybuffer";
     mediaPCMSocket.addEventListener('open', () => {
         mediaPCMSocket.binaryType = "arraybuffer";
@@ -278,7 +278,7 @@ function startAudio(){
         mediaPCM.feed(data);
     });
 
-    ttsPCMSocket = new WebSocket(`wss://192.168.0.164:${port+2}`);
+    ttsPCMSocket = new WebSocket(`wss://teslaa.androidwheels.com:${port+2}`);
     ttsPCMSocket.binaryType = "arraybuffer";
     ttsPCMSocket.addEventListener('open', () => {
         ttsPCMSocket.binaryType = "arraybuffer";
