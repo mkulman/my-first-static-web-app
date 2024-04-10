@@ -171,7 +171,7 @@ function postWorkerMessages(json) {
     });
 
     canvasElement.style.display = "block";
-    document.getElementById("info").style.display = "none";
+    //document.getElementById("info").style.display = "none";
     setInterval(function(){navigator.geolocation.getCurrentPosition(handlepossition);},500);
 }
 

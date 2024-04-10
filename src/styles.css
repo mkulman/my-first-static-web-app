@@ -24,7 +24,7 @@ canvas, video {
     width: auto;
     height: max(1080px, 100vh);
     position:fixed;
-
+    z-index:999;
 }
 
 span {
@@ -62,5 +62,6 @@ img {
     max-width: 300px;   
     margin-bottom:30px;
     position: fixed;
+    z-index: 0;
 }
 
