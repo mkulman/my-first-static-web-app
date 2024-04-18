@@ -1,0 +1,188 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+  background: #2e2e2e;
+  color: white;
+}
+
+*:focus {
+  outline: none;
+}
+
+a {
+  color: #c7c7c7;
+}
+
+img {
+  width:100%;
+  height:auto;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: 85%;
+  margin: 30px auto;
+}
+
+.container > a,
+.container > button {
+  width: 220px;
+  height: 180px;
+  background-color: black;
+  margin: 3%;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  padding: 30px;
+  border-radius: 18px;
+}
+
+.tesla {
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  padding-top: 45px;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 1) 35%, rgba(46, 46, 46, 1) 100%);
+  height: 250px;
+}
+
+.tesla > img {
+  width:200px;
+}
+
+.header {
+  margin-left: 100px;
+  margin-right: 100px;
+  border-bottom: #7c7c7c;
+  border-width: 2px;
+  border-style: none none solid none;
+  color: #c2c2c2;
+}
+
+.header h2 {
+  font-size: 1.2em;
+}
+
+.loading {
+  width: 10%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 999;
+}
+
+.shadow {
+  position: fixed;
+  justify-content: center;
+  display: flex;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: rgb(31 31 31 / 89%);
+  display: none;
+}
+
+.btnBasic {
+  background-color: black;
+  border-color: white;
+  border: 1px solid white;
+  color: white;
+  padding: 0.55em 0.55em;
+  text-align: center;
+  text-decoration: none;
+  font-size: 1em;
+  display: inline-block;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btnDone {
+  background-color: #008cba;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0px;
+  padding-bottom: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+.footer > .btnGroup {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.footer > .btnGroup > button {
+  background: none;
+  border: none;
+  padding: 10px;
+  margin-bottom: 25px;
+  cursor: pointer;
+  color: white;
+}
+
+.modal {
+  position: fixed;
+  display: none;
+  width: auto;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(31 31 31 / 89%);
+  z-index: 2;
+  padding: 100px;
+  text-align: center;
+}
+
+.Modal.show {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+#web {
+  cursor: pointer;
+}
+
+#web img {
+  width:70%;
+}
+
+input {
+  font-size: 2em;
+  background-color: black;
+  color: white;
+  border: solid;
+  border-color: #5b5b5b;
+  padding: 15px;
+}
+
+#editModal,
+#overlay {
+  padding: 70px 0;
+}
