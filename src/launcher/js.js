@@ -93,6 +93,16 @@ const showDialog = (element) => {
   const body = document.body;
   body.style.position = "fixed";
   body.style.top = `-${scrollY}`;
+
+  // Find the iframe within our newly-visible element
+  const iframe = document.getElementById(element).querySelector("iframe");
+  if (iframe) {
+    const dataSrc = iframe.getAttribute("data-src");
+    if (dataSrc) {
+      iframe.setAttribute("src", dataSrc);
+    }
+  }
+
 };
 
 const closeDialog = (element) => {

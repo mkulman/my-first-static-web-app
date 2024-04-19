@@ -20,17 +20,28 @@
     <link rel="shortcut icon" href="img/favicon.ico" />
     <link rel="canonical" href="https://abettertheater.nz/" />
     <link rel="stylesheet" href="styles.css?r=12" />
-    <style>
-      body {
-        font-family: Arial, Helvetica, sans-serif;
-      }
-    </style>
   </head>
   <body>
     
     
     <div class="tesla">
-      <img src="img/logo-white.png" />
+      <img class="logo" src="img/tesla.svg" />
+      <button class="icon" onclick="showOverlay()"><img src="img/search.svg" /></button>
+      <div class="icon">
+        <div class="nav-button">
+          <span class="text-color-sec"><</span>
+        </div>
+      </div>
+      <div class="icon">
+        <div class="nav-button">
+          <span class="text-color-sec">></span>
+        </div>
+      </div>
+      <div class="icon menu">
+            <span style="margin-right:30px">Home</span>
+            <a href="#quickAccess" class="text-color-sec" style="margin-right:30px;">Quick Access</a>
+            <a href="#services" class="text-color-sec">Games</a>
+      </div>
     </div>
     
     <div class="header">
@@ -45,15 +56,18 @@
     </div>
 
     <div class="container" id="services">
-      <button onclick="showOverlay()" id="web">
-        <img
-          src="img/web.svg"
-          height="78px"
-          width="100%"
-          alt="World Wide Web"
-          class="logo"
-        />
-      </button>
+      <div class="item">
+        <button onclick="showOverlay()" id="web">
+          <img
+            src="img/web.svg"
+            height="78px"
+            width="100%"
+            alt="World Wide Web"
+            class="logo"
+          />
+        </button>
+        <h3>Browser</h3>
+      </div>
     </div>
     <div class="modal" id="overlay" onClick="closeDialog('overlay')">
       <input
@@ -81,6 +95,11 @@
       <img src="img/loading.svg" class="loading" />
     </div>
 
+    <div class="modal" id="iframe">
+      <button class="btnDone iframe-button" onClick="window.location.reload();">Done</button>
+      <iframe class="androidauto" data-src="https://white-flower-0fa7ca810.3.azurestaticapps.net/"></iframe>
+    </div>
+    
     <div class="modal" id="editModal">
       <p>
         Select what streaming servies you would like to be hidden from your
@@ -148,6 +167,7 @@
           image: "hulu",
           name: "Hulu",
           geo: false,
+          title: "Hulu",
         },
         {
           url: "https://www.primevideo.com",
@@ -243,21 +263,31 @@
 
       const quickAccess = [
         {
-          url: `https://${document.location.host}/AndroidAuto`,
-          image: "hulu",
-          name: "Hulu",
+          url: "loading('https://${document.location.host}/AndroidAuto')",
+          image: "",
+          name: "Dark Mode",
+          desc: "Switch modes",
           geo: false,
         },
         {
-          url: "https://www.primevideo.com",
-          image: "prime",
-          name: "Prime Video",
+          url: "showDialog('iframe')",
+          image: "androidauto",
+          name: "Android Auto",
+          desc: "Connect with Android",
           geo: false,
         },
         {
-          url: "https://netflix.com",
-          image: "netflix",
-          name: "Netflix",
+          url: "loading('https://teslawaze.azurewebsites.net')",
+          image: "waze",
+          name: "Waze",
+          desc: "Live traffic",
+          geo: false,
+        },
+        {
+          url: "loading('https://google.com')",
+          image: "google",
+          name: "Google",
+          desc: "Web search",
           geo: false,
         }
       ];
@@ -276,7 +306,11 @@
           .getElementById("services")
           .insertAdjacentHTML(
             "afterbegin",
-            `<button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>`
+            `<div class="item">
+              <button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`
           );
       }
 
@@ -285,7 +319,13 @@
           .getElementById("quickAccess")
           .insertAdjacentHTML(
             "afterbegin",
-            `<button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>`
+            `<div class="item">
+              <!--<button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>-->
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
+              
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`  
           );
       }
     </script>
