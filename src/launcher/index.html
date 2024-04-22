@@ -26,7 +26,7 @@
     
     <div class="tesla">
       <img class="logo" src="img/tesla.svg" />
-      <button class="icon" onclick="showOverlay()"><img src="img/search.svg" /></button>
+      <button class="icon" onclick="toggle('weburl')"><img src="img/search.svg" /></button>
       <div class="icon">
         <div class="nav-button">
           <span class="text-color-sec"><</span>
@@ -43,6 +43,16 @@
             <a href="#services" class="text-color-sec">Games</a>
       </div>
     </div>
+
+    <div class="tesla" id="weburl" style="display:none">
+      <input
+        type="text"
+        id="path"
+        value="https://"
+        onClick="window.event.stopPropagation();"
+      />
+      <button class="blue-button" onClick="redirect();">Go</button>
+    </div>
     
     <div class="header">
       <h2>Quick Access:</h2>
@@ -52,27 +62,23 @@
     </div>
 
     <div class="header">
-      <h2>Games:</h2>
+      <h2>Utilities:</h2>
     </div>
 
     <div class="container" id="services">
-      <div class="item">
-        <button onclick="showOverlay()" id="web">
-          <img
-            src="img/web.svg"
-            height="78px"
-            width="100%"
-            alt="World Wide Web"
-            class="logo"
-          />
-        </button>
-        <h3>Browser</h3>
-      </div>
     </div>
+
+    <div class="header">
+      <h2>Games:</h2>
+    </div>
+
+    <div class="container" id="quickAccess">
+    </div>
+
     <div class="modal" id="overlay" onClick="closeDialog('overlay')">
       <input
         type="text"
-        id="path"
+        id="path2"
         value="https://"
         onClick="window.event.stopPropagation();"
       />
@@ -96,8 +102,8 @@
     </div>
 
     <div class="modal" id="iframe">
-      <button class="btnDone iframe-button" onClick="window.location.reload();">Done</button>
-      <iframe class="androidauto" data-src="https://white-flower-0fa7ca810.3.azurestaticapps.net/"></iframe>
+      <button class="blue-button iframe-button" style="margin-left:0px" onClick="window.location.reload();">Done</button>
+      <iframe class="androidauto"></iframe>
     </div>
     
     <div class="modal" id="editModal">
@@ -161,134 +167,73 @@
 
     <script>
       const baseServices = [
-        { url: "https://app.plex.tv", image: "plex", name: "Plex", geo: false },
-        {
-          url: "https://www.hulu.com",
-          image: "hulu",
-          name: "Hulu",
-          geo: false,
-          title: "Hulu",
+        { 
+          url: "loading('https://keep.google.com')", 
+          image: "keep.svg", 
+          name: "Google Keep", 
+          desc: "Notes",
+          geo: false 
         },
-        {
-          url: "https://www.primevideo.com",
-          image: "prime",
-          name: "Prime Video",
-          geo: false,
+        { 
+          url: "loading('https://plugshare.com')", 
+          image: "plugshare.png", 
+          name: "Plugshare", 
+          desc: "Charging Locations",
+          geo: false 
         },
-        {
-          url: "https://netflix.com",
-          image: "netflix",
-          name: "Netflix",
-          geo: false,
+        { 
+          url: "loading('https://www.ventusky.com/?p=43.570;-79.719;11&l=radar')", 
+          image: "ventusky.png", 
+          name: "Ventusky", 
+          desc: "Weather Radar",
+          geo: false 
         },
-        {
-          url: "https://www.disneyplus.com",
-          image: "disneyplus",
-          name: "Disney Plus",
-          geo: false,
-        },
-        {
-          url: "https://www.youtube.com",
-          image: "youtube",
-          name: "YouTube",
-          geo: false,
-        },
-        {
-          url: "https://www.twitch.tv",
-          image: "twitch",
-          name: "Twitch",
-          geo: false,
-        },
-        {
-          url: "https://www.neontv.co.nz",
-          image: "neon",
-          name: "NEON",
-          geo: false,
-        },
-        {
-          url: "https://www.tvnz.co.nz",
-          image: "tvnz",
-          name: "TV NZ",
-          geo: true,
-        },
-        {
-          url: "https://www.sparksport.co.nz",
-          image: "sparksport",
-          name: "Spark Sport",
-          geo: true,
-        },
-        {
-          url: "https://www.skygo.co.nz",
-          image: "skygo",
-          name: "Sky Go",
-          geo: true,
-        },
-        {
-          url: "https://www.skysportnow.co.nz",
-          image: "skysportnow",
-          name: "Sky Sport Now",
-          geo: true,
-        },
-        {
-          url: "https://www.threenow.co.nz",
-          image: "threenow",
-          name: "Three now",
-          geo: true,
-        },
-        {
-          url: "https://www.crunchyroll.com",
-          image: "crunchyroll",
-          name: "Crunchyroll",
-          geo: false,
-        },
-        {
-          url: "https://www.funimation.com",
-          image: "funimation",
-          name: "Funimation",
-          geo: false,
-        },
-        {
-          url: "https://music.youtube.com",
-          image: "youtubemusic",
-          name: "YouTube Music",
-          geo: false,
-        },
-        {
-          url: "https://tv.apple.com/",
-          image: "appletvplus",
-          name: "Apple TV +",
-          geo: false,
+        { 
+          url: "toggle('weburl')", 
+          id: "web",
+          image: "web.svg", 
+          name: "Browser", 
+          desc: "Go to Webpage",
+          geo: false 
         },
       ];
 
       const quickAccess = [
         
         {
-          url: "showDialog('iframe')",
-          image: "androidauto",
+          url: "showDialog('iframe', 'https://white-flower-0fa7ca810.3.azurestaticapps.net/')",
+          image: "androidauto.svg",
           name: "Android Auto",
           desc: "Connect with Android",
           geo: false,
         },
         {
           url: "loading('https://teslawaze.azurewebsites.net')",
-          image: "waze",
+          image: "waze.svg",
           name: "Waze",
           desc: "Live traffic",
           geo: false,
         },
         {
           url: "loading('https://google.com')",
-          image: "google",
+          image: "google.svg",
           name: "Google",
           desc: "Web search",
           geo: false,
         },
         {
-          url: "#",
-          image: "darkmode",
+          url: "loading('https://abetterrouteplanner.com')",
+          image: "abrp.png",
+          name: "Route Planner",
+          desc: "Charging route",
+          geo: false,
+        },
+        {
+          url: "toggleDarkMode()",
+          image: "darkmode.svg",
           name: "Dark Mode",
           desc: "Switch modes",
+          id: "darkmodelogo",
           geo: false,
         },
       ];
@@ -308,7 +253,7 @@
           .insertAdjacentHTML(
             "afterbegin",
             `<div class="item">
-              <button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
+              <button onClick="${obj["url"]}", id="${obj["id"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
               <h3>${obj["name"]}</h3>
               <h4 class="text-color-sec">${obj["desc"]}</h4>
              </div>`
@@ -321,9 +266,7 @@
           .insertAdjacentHTML(
             "afterbegin",
             `<div class="item">
-              <!--<button onClick="loading('${obj["url"]}', ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>-->
-              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}.svg" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
-              
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" id="${obj["id"]}" /></button>              
               <h3>${obj["name"]}</h3>
               <h4 class="text-color-sec">${obj["desc"]}</h4>
              </div>`  
