@@ -74,8 +74,8 @@ img {
 
 .tesla {
   display: flex;
-  align-items: start;
-  justify-content: last baseline;
+  align-items: center;
+  justify-content: center;
   padding: 25px;
   background: linear-gradient(180deg, rgba(224,224,224,1) 0%, rgba(244,244,244,0) 10px);
 }
@@ -202,7 +202,7 @@ h4 {
 }
 
 .btnDone {
-  background-color: #008cba;
+  background-color: #3e6ae1;
   border: none;
   color: white;
   padding: 10px 20px;
@@ -248,7 +248,7 @@ h4 {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgb(31 31 31 / 89%);
+  background-color: rgb(0 0 0);
   z-index: 2;
   padding: 20px;
   text-align: center;
@@ -265,11 +265,23 @@ h4 {
   height:800px;
   margin-top:10px;
   border-style: solid;
+  border-radius:9px;
 }
 
 .iframe-button {
   position:fixed;
-  top:840px;
+  top:850px;
+}
+
+.blue-button {
+  height: 45px;
+  color:#ffffff;
+  background-color: #3e6ae1;
+  border-radius: 4px;
+  margin-left:20px;
+  border:none;
+  min-width:100px;
+  font-family: "GothamSSM";
 }
 
 #web {
@@ -284,16 +296,56 @@ h4 {
   width:70%;
 }
 
+#services img {
+  width:70%;
+}
+
 input {
-  font-size: 2em;
+  font-size: 1.3em;
   border: solid;
-  border-color: #5b5b5b;
+  border-color: #dbdbdb;
   padding: 15px;
-  font-family:'GothamSSM';
-  width:85%;
+  font-family: 'GothamSSM';
+  width: 100%;
 }
 
 #editModal,
 #overlay {
   padding: 70px 0;
+}
+
+
+.darkmode {
+  background-color:#3e3e3e;
+  background: linear-gradient(90deg, rgb(9 9 9) 0%, rgb(13 13 13) 10px);
+}
+
+.darkmode .item > button,
+.darkmode .nav-button{
+  background-color:#303030;
+}
+
+.darkmode h2,
+.darkmode h3,
+.darkmode span {
+  color:#fff;
+}
+
+.darkmode .header {
+  border-bottom:#484848;
+}
+
+.darkmode .tesla{
+  background: linear-gradient(180deg, rgb(9, 9, 9) 0%, rgba(244, 244, 244, 0) 10px);
+}
+
+.darkmode .tesla img,
+.darkmode #darkmodelogo {
+  -webkit-filter: invert(1);
+  filter: invert(1);
+}
+
+.darkmode .header,
+.darkmode .container {
+
 }

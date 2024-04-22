@@ -1,5 +1,5 @@
 var country = "Loading";
-if (
+/*if (
   document.referrer.match(/^https:\/\/www\.youtube\.com/) ||
   window.innerWidth === 1111
 ) {
@@ -7,6 +7,7 @@ if (
 } else {
   show("overlayfull");
 }
+*/
 
 //getIPDetails();
 
@@ -18,6 +19,11 @@ node.addEventListener("keyup", function (event) {
     location.href = node.value;
   }
 });
+
+function redirect() {
+  //console.log(node.value);
+  location.href = `${node.value}`;
+}
 
 function goFullScreen() {
   location.href = `https://www.youtube.com/redirect?q=https://${document.location.host}`;
@@ -86,7 +92,7 @@ function getIPDetails() {
   xhttp.send();
 }
 
-const showDialog = (element) => {
+const showDialog = (element, src) => {
   show(element);
   document.getElementById(element).classList.add("show");
   const scrollY = document.documentElement.style.getPropertyValue("--scroll-y");
@@ -97,7 +103,8 @@ const showDialog = (element) => {
   // Find the iframe within our newly-visible element
   const iframe = document.getElementById(element).querySelector("iframe");
   if (iframe) {
-    const dataSrc = iframe.getAttribute("data-src");
+    //const dataSrc = iframe.getAttribute("data-src");
+    const dataSrc = src;
     if (dataSrc) {
       iframe.setAttribute("src", dataSrc);
     }
@@ -126,4 +133,17 @@ function hide(e) {
 }
 function show(e) {
   document.getElementById(e).style.display = "block";
+}
+
+function toggle(e) {
+  if (document.getElementById(e).style.display == "none") {
+    document.getElementById(e).style.display = "flex";
+  }
+  else {
+    document.getElementById(e).style.display = "none";
+  }
+}
+
+function toggleDarkMode() {
+  document.body.classList.toggle("darkmode");
 }
