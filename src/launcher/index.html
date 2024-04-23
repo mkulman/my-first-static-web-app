@@ -39,8 +39,8 @@
       </div>
       <div class="icon menu">
             <span style="margin-right:30px">Home</span>
-            <a href="#quickAccess" class="text-color-sec" style="margin-right:30px;">Quick Access</a>
-            <a href="#services" class="text-color-sec">Games</a>
+            <a href="#services" class="text-color-sec" style="margin-right:30px;">Utilities</a>
+            <a href="#games" class="text-color-sec">Games</a>
       </div>
     </div>
 
@@ -72,7 +72,7 @@
       <h2>Games:</h2>
     </div>
 
-    <div class="container" id="quickAccess">
+    <div class="container" id="games">
     </div>
 
     <div class="modal" id="overlay" onClick="closeDialog('overlay')">
@@ -238,6 +238,66 @@
         },
       ];
 
+      const games = [
+        { 
+          url: "loading('https://play.famobi.com/wrapper/knife-rain/A1000-10')", 
+          image: "kniferain.jpg", 
+          name: "Knife Rain", 
+          desc: "Skillfully throw knives",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/fruit-break/A1000-10')", 
+          image: "fruitbreak.jpg", 
+          name: "Fruit Ninja", 
+          desc: "Slice and dice fruit",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/swooop/A1000-10')", 
+          image: "swoop.jpg", 
+          name: "Swoop", 
+          desc: "Fly to collect coins",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/cut-the-rope/A1000-10')", 
+          image: "cuttherope.jpg", 
+          name: "Cut the Rope", 
+          desc: "Feed the Om Nom",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/parking-panic/A1000-10')", 
+          image: "parkingpanic.jpg", 
+          name: "Parking Panic", 
+          desc: "Park the cars",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/element-blocks/A1000-10')", 
+          image: "elementblocks.jpg", 
+          name: "Element Blocks", 
+          desc: "Tetris without falling",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/crazy-hen-level/A1000-10')", 
+          image: "crazyhen.jpg", 
+          name: "Crazy Hen", 
+          desc: "Cross the road",
+          geo: false 
+        },
+        { 
+          url: "loading('https://play.famobi.com/wrapper/cubito/A1000-10')", 
+          image: "cubito.jpg", 
+          name: "Cubito", 
+          desc: "Jump the cubes",
+          geo: false 
+        },
+      ];
+
+
       var services = baseServices;
 
       if (localStorage.getItem("hidden")) {
@@ -253,7 +313,7 @@
           .insertAdjacentHTML(
             "afterbegin",
             `<div class="item">
-              <button onClick="${obj["url"]}", id="${obj["id"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" /></button>
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" id="${obj["id"]}" width="100%" height="100%" class="logo" /></button>
               <h3>${obj["name"]}</h3>
               <h4 class="text-color-sec">${obj["desc"]}</h4>
              </div>`
@@ -267,6 +327,19 @@
             "afterbegin",
             `<div class="item">
               <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" id="${obj["id"]}" /></button>              
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`  
+          );
+      }
+
+      for (const obj of games.reverse()) {
+        document
+          .getElementById("games")
+          .insertAdjacentHTML(
+            "afterbegin",
+            `<div class="item">
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" id="games" /></button>              
               <h3>${obj["name"]}</h3>
               <h4 class="text-color-sec">${obj["desc"]}</h4>
              </div>`  
