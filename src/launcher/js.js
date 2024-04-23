@@ -39,7 +39,7 @@ function loading(url, geo) {
   if (geo && country !== "NZ") {
     showDialog("geoModal");
   } else {
-    showDialog("shadow");
+    //showDialog("shadow");
     location.href = url;
   }
 }
