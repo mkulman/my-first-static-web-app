@@ -100,7 +100,7 @@ function postWorkerMessages(json) {
         height = 720;
         zoom = Math.max(1, window.innerHeight / 720);
         //document.querySelector("canvas").style.height = "max(100vh,720px)"; 
-        document.querySelector("canvas").style.height = "720px"
+        //document.querySelector("canvas").style.height = "720px"
     } else {
         width = 800;
         height = 480;
