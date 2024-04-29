@@ -26,7 +26,7 @@ function redirect() {
 }
 
 function goFullScreen() {
-  location.href = `https://www.youtube.com/redirect?q=https://${document.location.host}`;
+  location.href = `https://www.youtube.com/redirect?q=https://${document.location.host}/launcher/index.html`;
 }
 
 function showOverlay() {
@@ -146,4 +146,29 @@ function toggle(e) {
 
 function toggleDarkMode() {
   document.body.classList.toggle("darkmode");
+
+  // Check if dark mode is enabled
+  var darkModeEnabled = document.body.classList.contains("darkmode");
+  console.log(darkModeEnabled);
+
+  const d = new Date();
+  d.setTime(d.getTime() + (24*60*60*1000));
+  let expires = "expires="+ d.toUTCString();
+
+
+  document.cookie = "darkModeEnabled=" + darkModeEnabled + ";" + expires + ";path=/";
+
+
 }
+
+// Function to check and apply dark mode on page load
+function checkDarkMode() {
+  var darkModeEnabled = (document.cookie.split('; ').find(row => row.startsWith('darkModeEnabled=')) || '').split('=')[1] === 'true';
+  if (darkModeEnabled) {
+      document.body.classList.add("darkmode");
+  }
+  console.log("Checking: " + darkModeEnabled);
+}
+
+// Call the function on page load
+window.onload = checkDarkMode();

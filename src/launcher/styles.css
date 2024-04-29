@@ -11,7 +11,6 @@
 
 body {
   margin: 0;
-  width:98%;
   font-family: GothamSSM;
   letter-spacing: -0.5px;
   background: #f4f4f4;
@@ -46,7 +45,6 @@ img {
   flex-wrap: wrap;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
   padding-left:15px;
   margin-bottom:40px;
 }
@@ -344,7 +342,7 @@ input {
 
 .darkmode {
   background-color:#3e3e3e;
-  background: linear-gradient(90deg, rgb(20 20 20) 0%, rgb(40 40 40) 10px);
+  background: linear-gradient(90deg, rgb(35 35 35) 0%, rgb(40 40 40) 10px);
 }
 
 .darkmode .item > button,
@@ -363,7 +361,7 @@ input {
 }
 
 .darkmode .tesla{
-  background: linear-gradient(180deg, rgb(20, 20, 20) 0%, rgba(244, 244, 244, 0) 10px);
+  background: linear-gradient(180deg, rgb(35, 35, 35) 0%, rgba(244, 244, 244, 0) 10px);
 }
 
 .darkmode .tesla img,
