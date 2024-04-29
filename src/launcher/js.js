@@ -101,12 +101,51 @@ const showDialog = (element, src) => {
   body.style.top = `-${scrollY}`;
 
   // Find the iframe within our newly-visible element
-  const iframe = document.getElementById(element).querySelector("iframe");
+  var iframe = document.getElementById(element).querySelector("iframe");
   if (iframe) {
     //const dataSrc = iframe.getAttribute("data-src");
     const dataSrc = src;
     if (dataSrc) {
       iframe.setAttribute("src", dataSrc);
+
+      console.log ("Setting iFrame src");
+
+      /* ADBLOCKER
+      // Check if the iframe content is loaded
+      iframe.onload = function() {
+          // Get the document inside the iframe
+          var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+          // Define a function to hide the specified div elements
+          function hideAdDivs() {
+
+              console.log("Hiding Ads");
+              console.log (iframeDoc.getElementById('div-gpt-ad-banner-left'));
+              // Select the div elements with the specified ids
+              var adBannerLeftDiv = iframeDoc.getElementById('div-gpt-ad-banner-left');
+              var adBannerRightDiv = iframeDoc.getElementById('div-gpt-ad-banner-right');
+              var adBannerTopDiv = iframeDoc.getElementById('div-gpt-ad-banner-top');
+              var adBannerBottomDiv = iframeDoc.getElementById('div-gpt-ad-banner-bottom');
+
+              // Hide each div if it exists
+              if (adBannerLeftDiv) {
+                  adBannerLeftDiv.style.display = 'none';
+              }
+              if (adBannerRightDiv) {
+                adBannerRightDiv.style.display = 'none';
+            }
+              if (adBannerTopDiv) {
+                  adBannerTopDiv.style.display = 'none';
+              }
+              if (adBannerBottomDiv) {
+                  adBannerBottomDiv.style.display = 'none';
+              }
+          }
+
+          // Call the hideAdDivs function
+          hideAdDivs();
+      }
+      */
     }
   }
 

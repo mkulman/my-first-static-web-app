@@ -14,6 +14,7 @@
     <meta property="og:image" content="https://white-flower-0fa7ca810.3.azurestaticapps.net/launcher/img/logo-200.png" />
     <link rel="shortcut icon" href="img/favicon.ico" />
     <link rel="stylesheet" href="styles.css?r=12" />
+    <meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://play.famobi.com https://fonts.googleapis.com https://img.cdn.famobi.com https://games.cdn.famobi.com https://api.famobi.com https://cookie-cdn.cookiepro.com  https://data.html5games.com https://data.html5games.com https://games.cdn.famobi.com https://white-flower-0fa7ca810.3.azurestaticapps.net/ https://teslaa.androidwheels.com">
   </head>
   <body>
     
@@ -92,7 +93,7 @@
 
     <div class="modal" id="iframe">
       <button class="x-button iframe-button" onClick="window.location.reload();">X</button>
-      <iframe class="androidauto"></iframe>
+      <iframe class="androidauto" id="adblock"></iframe>
     </div>
     
     <div class="modal" id="editModal">
@@ -229,56 +230,56 @@
 
       const games = [
         { 
-          url: "loading('https://play.famobi.com/wrapper/knife-rain/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/knife-rain/A1000-10')", 
           image: "kniferain.jpg", 
-          name: "Knife Rain", 
+          name: "iFrame", 
           desc: "Skillfully throw knives",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/fruit-break/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/fruit-break/A1000-10')", 
           image: "fruitbreak.jpg", 
           name: "Fruit Ninja", 
           desc: "Slice and dice fruit",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/swooop/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/swooop/A1000-10')", 
           image: "swoop.jpg", 
           name: "Swoop", 
           desc: "Fly to collect coins",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/cut-the-rope/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/cut-the-rope/A1000-10')", 
           image: "cuttherope.jpg", 
           name: "Cut the Rope", 
           desc: "Feed the Om Nom",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/parking-panic/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/parking-panic/A1000-10')", 
           image: "parkingpanic.jpg", 
           name: "Parking Panic", 
           desc: "Park the cars",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/element-blocks/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/element-blocks/A1000-10')", 
           image: "elementblocks.jpg", 
           name: "Element Blocks", 
           desc: "Tetris without falling",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/crazy-hen-level/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/crazy-hen-level/A1000-10')", 
           image: "crazyhen.jpg", 
           name: "Crazy Hen", 
           desc: "Cross the road",
           geo: false 
         },
         { 
-          url: "loading('https://play.famobi.com/wrapper/cubito/A1000-10')", 
+          url: "showDialog('iframe', 'https://play.famobi.com/wrapper/cubito/A1000-10')", 
           image: "cubito.jpg", 
           name: "Cubito", 
           desc: "Jump the cubes",
