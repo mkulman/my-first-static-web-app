@@ -277,6 +277,14 @@ h4 {
   top: 10px;
 }
 
+.weather-button {
+  position: absolute;
+  /* text-align: right; */
+  /* top: 780px; */
+  right: 10px;
+  top: 10px;
+}
+
 .blue-button {
   height: 45px;
   color:#ffffff;
@@ -334,6 +342,28 @@ input {
   color: #171a20;
 }
 
+.weatherwidget-io {
+  margin:-30px;
+}
+
+#weather-forecast {
+  background-color:rgb(0,0,0,0.9);
+  padding:50px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weather-forecast-container {
+  width:70%;
+  padding:70px; 
+  background-color:#e4e4e4;
+  border-radius:20px;
+  margin-left:auto;
+  margin-right:auto;
+  margin-top:120px;
+}
+
 #editModal,
 #overlay {
   padding: 70px 0;
@@ -342,7 +372,7 @@ input {
 
 .darkmode {
   background-color:#3e3e3e;
-  background: linear-gradient(90deg, rgb(35 35 35) 0%, rgb(40 40 40) 10px);
+  background: linear-gradient(90deg, rgb(30 30 30) 0%, rgb(33 33 33) 10px);
 }
 
 .darkmode .item > button,

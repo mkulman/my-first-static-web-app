@@ -97,8 +97,8 @@ const showDialog = (element, src) => {
   document.getElementById(element).classList.add("show");
   const scrollY = document.documentElement.style.getPropertyValue("--scroll-y");
   const body = document.body;
-  body.style.position = "fixed";
-  body.style.top = `-${scrollY}`;
+  //body.style.position = "fixed";
+  //body.style.top = `-${scrollY}`;
 
   // Find the iframe within our newly-visible element
   var iframe = document.getElementById(element).querySelector("iframe");
@@ -107,8 +107,14 @@ const showDialog = (element, src) => {
     const dataSrc = src;
     if (dataSrc) {
       iframe.setAttribute("src", dataSrc);
-
       console.log ("Setting iFrame src");
+
+      $("#adblock").on("load", function() {
+        // This code will run when the iframe content is fully loaded
+        console.log("iFrame content is ready!");
+        //$('#iframe').contents().find("head").append($("<style type='text/css'> #div-gpt-ad-banner-right {display:none;} </style>"));
+        $('#iframe').contents().find("#div-gpt-ad-banner-right").hide();
+      });
 
       /* ADBLOCKER
       // Check if the iframe content is loaded
@@ -188,14 +194,15 @@ function toggleDarkMode() {
 
   // Check if dark mode is enabled
   var darkModeEnabled = document.body.classList.contains("darkmode");
-  console.log(darkModeEnabled);
+  //console.log(darkModeEnabled);
 
   const d = new Date();
   d.setTime(d.getTime() + (24*60*60*1000));
   let expires = "expires="+ d.toUTCString();
 
-
   document.cookie = "darkModeEnabled=" + darkModeEnabled + ";" + expires + ";path=/";
+
+  checkDarkMode();
 
 
 }
@@ -203,11 +210,45 @@ function toggleDarkMode() {
 // Function to check and apply dark mode on page load
 function checkDarkMode() {
   var darkModeEnabled = (document.cookie.split('; ').find(row => row.startsWith('darkModeEnabled=')) || '').split('=')[1] === 'true';
-  if (darkModeEnabled) {
-      document.body.classList.add("darkmode");
+  
+  // Set dark mode from cookie on page refresh
+  if (darkModeEnabled && !document.body.classList.contains("darkmode")) {
+    document.body.classList.add("darkmode");
   }
+
+  // Dark mode already set on body. Refresh weather widget
+  if (darkModeEnabled) {
+    document.getElementById("weatherwidget").setAttribute("data-textcolor", "#bbbbbb");
+    __weatherwidget_init();
+  }
+
+  else {
+    document.getElementById("weatherwidget").setAttribute("data-textcolor", "#454545");
+    __weatherwidget_init();
+  }
+
+
   console.log("Checking: " + darkModeEnabled);
 }
 
 // Call the function on page load
 window.onload = checkDarkMode();
+
+$(document).ready(function() {
+  // Your jQuery code here
+  console.log("jQuery is ready!");
+});
+
+/*Tawk_API.onLoad = function() {
+  // without a specific API, you may try a similar load function
+  // perhaps with a setTimeout to ensure the iframe's content is fully loaded
+    $('#mtawkchat-minified-iframe-element').
+      contents().find("head").append(
+       $("<style type='text/css'>"+
+         "#tawkchat-status-text-container {"+
+           "background: url(https://example.net/img/my_mobile_bg.png) no-repeat center center blue;"+
+           "background-size: 100%;"+
+         "} "+
+         "#tawkchat-status-icon {display:none} </style>")
+     );
+  };*/
