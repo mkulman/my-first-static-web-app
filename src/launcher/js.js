@@ -94,11 +94,18 @@ function getIPDetails() {
 
 const showDialog = (element, src) => {
   show(element);
+  console.log("ShowDialog: " + element);
   document.getElementById(element).classList.add("show");
   const scrollY = document.documentElement.style.getPropertyValue("--scroll-y");
   const body = document.body;
   //body.style.position = "fixed";
   //body.style.top = `-${scrollY}`;
+
+  // Special case for resizing body when waze is open side by side
+  if (element == "waze") {
+    console.log("Resizing body to 30%"); 
+    document.getElementsByClassName("body-container")[0].style.setProperty("width", "30%");
+  }
 
   // Find the iframe within our newly-visible element
   var iframe = document.getElementById(element).querySelector("iframe");
@@ -155,6 +162,7 @@ const showDialog = (element, src) => {
     }
   }
 
+  
 };
 
 const closeDialog = (element) => {

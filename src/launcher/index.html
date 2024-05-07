@@ -19,91 +19,109 @@
   </head>
   <body>
     
-    
-    <div class="tesla">
-      <img class="logo" src="img/tesla.svg" />
-      <button class="icon" onclick="toggle('weburl')"><img src="img/search.svg" /></button>
-      <div class="icon">
-        <div class="nav-button">
-          <span class="text-color-sec"><</span>
+    <div class="body-container" style="width:100%; position:absolute;">  
+
+      <div class="tesla">
+        <img class="logo" src="img/tesla.svg" />
+        <button class="icon" onclick="toggle('weburl')"><img src="img/search.svg" /></button>
+        <div class="icon">
+          <div class="nav-button">
+            <span class="text-color-sec"><</span>
+          </div>
+        </div>
+        <div class="icon">
+          <div class="nav-button">
+            <span class="text-color-sec">></span>
+          </div>
+        </div>
+        <div class="icon menu">
+              <span style="margin-right:30px">Home</span>
+              <a href="#services" class="text-color-sec" style="margin-right:30px;">Utilities</a>
+              <a href="#games" class="text-color-sec">Games</a>
         </div>
       </div>
-      <div class="icon">
-        <div class="nav-button">
-          <span class="text-color-sec">></span>
+
+      <div class="tesla" id="weburl" style="display:none">
+        <input
+          type="text"
+          id="path"
+          value="https://"
+          onClick="window.event.stopPropagation();"
+        />
+        <button class="blue-button" onClick="redirect();">Go</button>
+      </div>
+
+      <div class="modal" id="weather-forecast" style="display:none">
+        <div class="weather-forecast-container" style="position:relative">
+          <button class="x-button weather-button" onClick="closeDialog('weather-forecast')">X</button>
+          <a class="weatherwidget-io" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-label_1="Mississauga" data-font="Roboto" data-icons="Climacons Animated" 
+          data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="1.5">Mississauga</a>
+          <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+          </script>
         </div>
+        
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
+        onclick="closeDialog('weather-forecast')">
       </div>
-      <div class="icon menu">
-            <span style="margin-right:30px">Home</span>
-            <a href="#services" class="text-color-sec" style="margin-right:30px;">Utilities</a>
-            <a href="#games" class="text-color-sec">Games</a>
       </div>
-    </div>
 
-    <div class="tesla" id="weburl" style="display:none">
-      <input
-        type="text"
-        id="path"
-        value="https://"
-        onClick="window.event.stopPropagation();"
-      />
-      <button class="blue-button" onClick="redirect();">Go</button>
-    </div>
+      <div class="header">
+        <h2>Quick Access:</h2>
+      </div>
 
-    <div class="modal" id="weather-forecast" style="display:none">
-      <div class="weather-forecast-container" style="position:relative">
-        <button class="x-button weather-button" onClick="closeDialog('weather-forecast')">X</button>
-        <a class="weatherwidget-io" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-label_1="Mississauga" data-font="Roboto" data-icons="Climacons Animated" 
-        data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="1.5">Mississauga</a>
-        <script>
-          !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-        </script>
+      <div class="container" id="quickAccess">
+        <div class="item">
+          <button style="position:relative">
+            <a class="weatherwidget-io" id="weatherwidget" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-font="Roboto" data-icons="Climacons Animated" 
+              data-mode="Current" data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" 
+              data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="0.8">
+            </a>
+            <script>
+              !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
+            <!-- Transparent overlay -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
+              onclick="showDialog('weather-forecast')">
+            </div>
+          </button>
+          <h3>Weather</h3>
+          <h4 class="text-color-sec">Mississauga</h4>
+        </div>
       </div>
       
-      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
-      onclick="closeDialog('weather-forecast')">
-    </div>
+
+      <div class="header">
+        <h2>Utilities:</h2>
+      </div>
+      
+      <div class="container" id="services">
+      </div>
+
+      <div class="header">
+        <h2>Games:</h2>
+      </div>
+
+      <div class="container" id="games">
+      </div>
+
+      <div class="footer">
+        <div id="overlayfull" style="text-align: center">
+          <button class="blue-button" onClick="goFullScreen();">
+            Go Fullscreen
+          </button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="header">
-      <h2>Quick Access:</h2>
+
+    <div id="waze" style="display:none">
+      <button class="x-button iframe-button" onClick="window.location.reload();">X</button>
+      <iframe id="waze-iframe" src="https://embed.waze.com/iframe?zoom=12&lat=43.589033&lon=-79.644098&ct=livemap" width="69%" allowfullscreen style="position:fixed; top:-28px; right:0px; height:calc(100% + 55px); border-style: none; border-radius:9px; display:block;"></iframe> 
     </div>
 
-    <div class="container" id="quickAccess">
-      <div class="item">
-        <button style="position:relative">
-          <a class="weatherwidget-io" id="weatherwidget" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-font="Roboto" data-icons="Climacons Animated" 
-            data-mode="Current" data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" 
-            data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="0.8">
-          </a>
-          <script>
-            !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
-          </script>
-          <!-- Transparent overlay -->
-          <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
-            onclick="showDialog('weather-forecast')">
-          </div>
-        </button>
-        <h3>Weather</h3>
-        <h4 class="text-color-sec">Mississauga</h4>
-       </div>
-    </div>
     
-
-    <div class="header">
-      <h2>Utilities:</h2>
-    </div>
-    
-    <div class="container" id="services">
-    </div>
-
-    <div class="header">
-      <h2>Games:</h2>
-    </div>
-
-    <div class="container" id="games">
-    </div>
-
     <div class="modal" id="overlay" onClick="closeDialog('overlay')">
       <input
         type="text"
@@ -113,13 +131,7 @@
       />
     </div>
 
-    <div class="footer">
-      <div id="overlayfull" style="text-align: center">
-        <button class="blue-button" onClick="goFullScreen();">
-          Go Fullscreen
-        </button>
-      </div>
-    </div>
+    
 
     <div class="shadow" id="shadow">
       <img src="img/loading.svg" class="loading" />
@@ -220,6 +232,13 @@
           desc: "Go to Webpage",
           geo: false 
         },
+        {
+          url: "loading('https://teslawaze.azurewebsites.net')",
+          image: "waze.svg",
+          name: "Waze",
+          desc: "Live traffic",
+          geo: false,
+        },
       ];
 
       const quickAccess = [
@@ -232,7 +251,7 @@
           geo: false,
         },
         {
-          url: "loading('https://teslawaze.azurewebsites.net')",
+          url: "showDialog('waze')",
           image: "waze.svg",
           name: "Waze",
           desc: "Live traffic",
