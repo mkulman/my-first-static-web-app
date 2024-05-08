@@ -9,6 +9,10 @@
   src: url("Gotham/gothamssm_light.otf") format("opentype");
 }
 
+html, body {
+  touch-action: pan-y;
+}
+
 body {
   margin: 0;
   font-family: GothamSSM;
@@ -16,6 +20,10 @@ body {
   background: #f4f4f4;
   background: linear-gradient(90deg, rgb(224, 224, 224,1) 0%, rgba(244,244,244,1) 10px);
   color: #171a20;
+}
+
+.stop-scroll {
+  overflow:hidden;
 }
 
 .text-color-pri {
@@ -263,18 +271,22 @@ h4 {
   /*width:1150px;
   height:720px;*/
   width:100%;
-  height:100%;
-  margin-top:0px;
+  height:800px;
+  margin-top:50px;
   border-style: none;
   border-radius:9px;
+}
+
+#waze-iframe {
+  width:calc(100% - 370px);
 }
 
 .iframe-button {
   position: fixed;
   /* text-align: right; */
   /* top: 780px; */
-  right: 10px;
-  top: 10px;
+  right: 5px;
+  top: 5px;
 }
 
 .weather-button {
@@ -305,7 +317,7 @@ h4 {
   border-color:#5b5b5b;
   border-width: 2px;
   min-width: 40px;
-  z-index:2;
+  z-index:4;
 }
 
 #web {
@@ -381,6 +393,7 @@ input {
   background-color:#3e3e3e;
 }
 
+.darkmode p,
 .darkmode h2,
 .darkmode h3,
 .darkmode span {

@@ -104,7 +104,11 @@ const showDialog = (element, src) => {
   // Special case for resizing body when waze is open side by side
   if (element == "waze") {
     console.log("Resizing body to 30%"); 
-    document.getElementsByClassName("body-container")[0].style.setProperty("width", "30%");
+    document.getElementsByClassName("body-container")[0].style.setProperty("width", "370px");
+    
+    // Hide menu search icon and nav labels when in slim mode
+    document.getElementsByClassName("icon")[0].style.setProperty("display", "none"); 
+    document.getElementsByClassName("icon")[3].style.setProperty("display", "none"); 
   }
 
   // Find the iframe within our newly-visible element
@@ -115,6 +119,8 @@ const showDialog = (element, src) => {
     if (dataSrc) {
       iframe.setAttribute("src", dataSrc);
       console.log ("Setting iFrame src");
+      document.body.classList.add("stop-scroll");
+
 
       $("#adblock").on("load", function() {
         // This code will run when the iframe content is fully loaded
@@ -174,10 +180,11 @@ const closeDialog = (element) => {
   window.scrollTo(0, parseInt(scrollY || "0") * -1);
   document.getElementById(element).classList.remove("show");
 };
+
 window.addEventListener("scroll", () => {
   document.documentElement.style.setProperty(
-    "--scroll-y",
-    `${window.scrollY}px`
+    //"--scroll-y",
+    //`${window.scrollY}px`
   );
 });
 
@@ -224,6 +231,32 @@ function checkDarkMode() {
     document.body.classList.add("darkmode");
   }
 
+  // Grab the current location to populate into Waze iFrame
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      // Set lat and lon to something if current position can't be pulled right away
+      var latitude = 43.783742;
+      var longitude = -67.09385;
+
+      latitude = position.coords.latitude.toFixed(6);
+      longitude = position.coords.longitude.toFixed(6);
+
+      document.getElementById("alert").innerHTML = "Latitude: " + latitude + "<br>Longitude: " + longitude;
+
+      // Set iframe src
+      var iframe = document.getElementById("waze-iframe");
+      
+      if (iframe) {
+        //const dataSrc = iframe.getAttribute("data-src");
+        iframe.setAttribute("src", "https://embed.waze.com/iframe?zoom=14&lat=" + latitude + "&lon=" + longitude + "&ct=livemap");
+        iframe.contentWindow.location.reload();
+      }
+    });
+  } 
+  else {
+      document.getElementById("alert").innerHTML = "Geolocation is not supported by this browser.";
+  }
+
   // Dark mode already set on body. Refresh weather widget
   if (darkModeEnabled) {
     document.getElementById("weatherwidget").setAttribute("data-textcolor", "#bbbbbb");
@@ -235,8 +268,7 @@ function checkDarkMode() {
     __weatherwidget_init();
   }
 
-
-  console.log("Checking: " + darkModeEnabled);
+  console.log("Darkmode cookie result: " + darkModeEnabled);
 }
 
 // Call the function on page load

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <title>Tesla Launch</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#262626" />
     <meta property="og:type" content="website" />
     <meta
@@ -51,7 +51,7 @@
         <button class="blue-button" onClick="redirect();">Go</button>
       </div>
 
-      <div class="modal" id="weather-forecast" style="display:none">
+      <div class="modal" id="weather-forecast" style="display:none; z-index:3;">
         <div class="weather-forecast-container" style="position:relative">
           <button class="x-button weather-button" onClick="closeDialog('weather-forecast')">X</button>
           <a class="weatherwidget-io" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-label_1="Mississauga" data-font="Roboto" data-icons="Climacons Animated" 
@@ -61,9 +61,9 @@
           </script>
         </div>
         
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background-color: transparent; cursor: pointer;"
         onclick="closeDialog('weather-forecast')">
-      </div>
+        </div>
       </div>
 
       <div class="header">
@@ -81,7 +81,7 @@
               !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
             </script>
             <!-- Transparent overlay -->
-            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999; background-color: transparent; cursor: pointer;"
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background-color: transparent; cursor: pointer;"
               onclick="showDialog('weather-forecast')">
             </div>
           </button>
@@ -105,6 +105,10 @@
       <div class="container" id="games">
       </div>
 
+      <div class="header">
+        <p id="alert">Alerts: </p>
+      </div>
+
       <div class="footer">
         <div id="overlayfull" style="text-align: center">
           <button class="blue-button" onClick="goFullScreen();">
@@ -118,10 +122,9 @@
 
     <div id="waze" style="display:none">
       <button class="x-button iframe-button" onClick="window.location.reload();">X</button>
-      <iframe id="waze-iframe" src="https://embed.waze.com/iframe?zoom=12&lat=43.589033&lon=-79.644098&ct=livemap" width="69%" allowfullscreen style="position:fixed; top:-28px; right:0px; height:calc(100% + 55px); border-style: none; border-radius:9px; display:block;"></iframe> 
+      <iframe id="waze-iframe" src="https://embed.waze.com/iframe?zoom=14&lat=43.755628&lon=-79.252052&ct=livemap" allowfullscreen  user-scalable="yes" style="position:fixed; top:-28px; right:0px; height:calc(100% + 64px); border-style: none; border-radius:9px; display:block;"></iframe> 
     </div>
 
-    
     <div class="modal" id="overlay" onClick="closeDialog('overlay')">
       <input
         type="text"
@@ -235,8 +238,8 @@
         {
           url: "loading('https://teslawaze.azurewebsites.net')",
           image: "waze.svg",
-          name: "Waze",
-          desc: "Live traffic",
+          name: "TeslaWaze",
+          desc: "Live traffic map",
           geo: false,
         },
       ];
