@@ -6,7 +6,7 @@
       "methods": [
         "get"
       ],
-      "rewrite": "/launcher/"
+      "redirect": "/launcher/"
     }
   ]
 }
