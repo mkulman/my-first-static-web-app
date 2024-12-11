@@ -6,7 +6,7 @@
       "methods": [
         "get"
       ],
-      "redirect": "/launcher/index.html",
+      "rewrite": "/launcher/",
       "statusCode": 200
     }
   ]
