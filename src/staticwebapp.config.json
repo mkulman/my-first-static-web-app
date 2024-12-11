@@ -1,13 +1,3 @@
 {
-  "trailingSlash": "auto",
-  "routes": [
-    {
-      "route": "/launcher",
-      "methods": [
-        "get"
-      ],
-      "rewrite": "/launcher/",
-      "statusCode": 200
-    }
-  ]
+  "trailingSlash": "auto"
 }
