@@ -1,26 +1,419 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-    <title>Android Auto</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/">
-    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-    <link href="./css2.css" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    </head><body id="body"><img src="./mute.svg" style="position:fixed;top:calc(50% - 150px);left:calc(50% - 150px);display: none;" id="muteicon">
-    <link rel="stylesheet" href="./styles.css">
-    <meta name="HandheldFriendly" content="true">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Tesla Launch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#262626" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:site_name"
+      content="Tesla Launcher"
+    />
+    <meta property="og:title" content="Tesla Launcher" />
+    <meta property="og:image" content="https://white-flower-0fa7ca810.3.azurestaticapps.net/launcher/img/logo-200.png" />
+    <link rel="shortcut icon" href="img/favicon.ico" />
+    <link rel="stylesheet" href="styles.css?r=12" />
+    <!--<meta http-equiv="Content-Security-Policy" content="frame-src 'self' https://play.famobi.com https://fonts.googleapis.com https://img.cdn.famobi.com https://games.cdn.famobi.com https://api.famobi.com https://cookie-cdn.cookiepro.com  https://data.html5games.com https://data.html5games.com https://games.cdn.famobi.com https://white-flower-0fa7ca810.3.azurestaticapps.net/ https://teslaa.androidwheels.com">-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    
+    <div class="body-container" style="width:100%; position:absolute;">  
+
+      <div class="tesla">
+        <img class="logo" src="img/tesla.svg" />
+        <button class="icon" onclick="toggle('weburl')"><img src="img/search.svg" /></button>
+        <div class="icon">
+          <div class="nav-button">
+            <span class="text-color-sec"><</span>
+          </div>
+        </div>
+        <div class="icon">
+          <div class="nav-button">
+            <span class="text-color-sec">></span>
+          </div>
+        </div>
+        <div class="icon menu">
+              <span style="margin-right:30px">Home</span>
+              <a href="#services" class="text-color-sec" style="margin-right:30px;">Utilities</a>
+              <a href="#games" class="text-color-sec">Games</a>
+        </div>
+      </div>
+
+      <div class="tesla" id="weburl" style="display:none">
+        <input
+          type="text"
+          id="path"
+          value="https://"
+          onClick="window.event.stopPropagation();"
+        />
+        <button class="blue-button" onClick="redirect();">Go</button>
+      </div>
+
+      <div class="modal" id="weather-forecast" style="display:none; z-index:3;">
+        <div class="weather-forecast-container" style="position:relative">
+          <button class="x-button weather-button" onClick="closeDialog('weather-forecast')">X</button>
+          <a class="weatherwidget-io" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-label_1="Mississauga" data-font="Roboto" data-icons="Climacons Animated" 
+          data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="1.5">Mississauga</a>
+          <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+          </script>
+        </div>
+        
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background-color: transparent; cursor: pointer;"
+        onclick="closeDialog('weather-forecast')">
+        </div>
+      </div>
+
+      <div class="header">
+        <h2>Quick Access:</h2>
+      </div>
+
+      <div class="container" id="quickAccess">
+        <div class="item">
+          <button style="position:relative">
+            <a class="weatherwidget-io" id="weatherwidget" href="https://forecast7.com/en/43d59n79d64/mississauga/" data-font="Roboto" data-icons="Climacons Animated" 
+              data-mode="Current" data-theme="pure" data-basecolor="rgba(255, 255, 255, 0)" data-accent="rgba(1, 1, 1, 0)" data-textcolor="#7f7c7c" data-suncolor="#feb953" 
+              data-mooncolor="#7f7c7c" data-cloudcolor="#7f7c7c" data-scale="0.8">
+            </a>
+            <script>
+              !function (d, s, id) { var js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); } }(document, 'script', 'weatherwidget-io-js');
+            </script>
+            <!-- Transparent overlay -->
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; background-color: transparent; cursor: pointer;"
+              onclick="showDialog('weather-forecast')">
+            </div>
+          </button>
+          <h3>Weather</h3>
+          <h4 class="text-color-sec">Mississauga</h4>
+        </div>
+      </div>
+      
+
+      <div class="header">
+        <h2>Utilities:</h2>
+      </div>
+      
+      <div class="container" id="services">
+      </div>
+
+      <div class="header">
+        <h2>Games:</h2>
+      </div>
+
+      <div class="container" id="games">
+      </div>
+
+      <div class="header">
+        <p id="alert">Alerts: </p>
+      </div>
+
+      <div class="footer">
+        <div id="overlayfull" style="text-align: center">
+          <button class="blue-button" onClick="goFullScreen();">
+            Go Fullscreen
+          </button>
+        </div>
+      </div>
+
+    </div>
 
 
+    <div id="waze" style="display:none">
+      <button class="x-button iframe-button" onClick="window.location.reload();">X</button>
+      <iframe id="waze-iframe" src="https://embed.waze.com/iframe?zoom=14&lat=43.755628&lon=-79.252052&ct=livemap" allowfullscreen  user-scalable="yes" style="position:fixed; top:-28px; right:0px; height:calc(100% + 64px); border-style: none; border-radius:9px; display:block;"></iframe> 
+    </div>
 
-<canvas style="display: none;"></canvas>
-<div class="logo" id="info">
-    <img src="logo-white.png" /> 
-    <span id="info">Loading Android Auto ...</span>
-</div>
+    <div class="modal" id="overlay" onClick="closeDialog('overlay')">
+      <input
+        type="text"
+        id="path2"
+        value="https://"
+        onClick="window.event.stopPropagation();"
+      />
+    </div>
 
-<span id="log"></span>
-<span id="warning"></span>
+    
 
-<script src="./pcm-player.min.js"></script>
-<script src="./main.js"></script>
+    <div class="shadow" id="shadow">
+      <img src="img/loading.svg" class="loading" />
+    </div>
 
-</body></html>
+    <div class="modal" id="iframe">
+      <button class="x-button iframe-button" onClick="window.location.reload();">X</button>
+      <iframe class="androidauto" id="adblock"></iframe>
+    </div>
+    
+    <div class="modal" id="editModal">
+      <p>
+        Select what streaming servies you would like to be hidden from your
+        dashboard
+      </p>
+      <br />
+      <div id="serviceItems"></div>
+      <br />
+      <button class="btnDone" onClick="window.location.reload();">Done</button>
+    </div>
+
+    <div class="modal" id="geoModal" onClick="closeDialog('geoModal')">
+      <h1>Oops!</h1>
+      <h3>
+        This service won't work unless you are connected to WiFi. Please connect
+        to your phone's hotspot and try again.
+      </h3>
+      <br />
+      <br />
+      <br />
+      <p>
+        <b>Why???</b><br />We have detected you are using your Tesla's LTE
+        connection. Your Tesla's data connection is actually coming from
+        Australia and this service you are trying to access is geo-locked to New
+        Zealand. Because of this even though you are physically in New Zealand,
+        the website you are trying to access thinks you are in Australia and
+        won't let you stream. To get around this you will need to connect your
+        car to WiFi and then this service will work. Try tethering to your
+        phone's hotspot.
+      </p>
+      <br />
+    </div>
+
+    <div class="modal" id="aboutModal" onClick="closeDialog('aboutModal')">
+      <h1>About</h1>
+      <h3>
+        Introducing ABetterTheater: Your gateway to an enhanced Tesla media
+        experience, providing seamless access to all your favorite streaming
+        services. With a focus on simplifying the process of accessing
+        fullscreen media, ABetterTheater empowers you through an elegantly
+        designed "Go Fullscreen" button, ensuring quick engagement and an
+        immersive entertainment experience during your parked moments.
+      </h3>
+      <p>
+        Found an issue or bug?
+        <a href="https://github.com/jLynx/ABetterTheater/issues"
+          >Tap here to report an issue</a
+        >
+      </p>
+      <p>
+        This wesbite is fully open source:
+        <a href="https://github.com/jLynx/ABetterTheater"
+          >https://github.com/jLynx/ABetterTheater</a
+        >.
+      </p>
+      <p>Made with ❤️ by <a href="https://jlynx.net">jLynx.net</a>.</p>
+      <br />
+    </div>
+
+    <script>
+      const baseServices = [
+        { 
+          url: "loading('https://keep.google.com/')", 
+          image: "keep.svg", 
+          name: "Google Keep", 
+          desc: "Notes",
+          geo: false 
+        },
+        { 
+          url: "loading('https://keep.google.com/u/0/#NOTE/11Cymg3V1V0J6kar0QJxexnn8197t7tUDioo0xzutX1Ifn_PfA5olqA0HpeVwOsEmHUMb')", 
+          image: "keep.svg", 
+          name: "Mileage Tracker", 
+          desc: "Keep - Mileage Tracker",
+          geo: false 
+        },
+        { 
+          url: "loading('https://keep.google.com/u/0/#LIST/1Wj3KRy68s_QVU14IjLAtWqWTCdhHF1QdDpcvPVpcIiw92rSMPGZaWLoKZFsAsaG5M3Ve')", 
+          image: "keep.svg", 
+          name: "Grocery List", 
+          desc: "Keep - Grocery List",
+          geo: false 
+        },
+        { 
+          url: "loading('https://plugshare.com')", 
+          image: "plugshare.png", 
+          name: "Plugshare", 
+          desc: "Charging Locations",
+          geo: false 
+        },
+        { 
+          url: "loading('https://www.ventusky.com/?p=43.570;-79.719;11&l=radar')", 
+          image: "ventusky.png", 
+          name: "Ventusky", 
+          desc: "Weather Radar",
+          geo: false 
+        },
+        { 
+          url: "toggle('weburl')", 
+          id: "web",
+          image: "web.svg", 
+          name: "Browser", 
+          desc: "Go to Webpage",
+          geo: false 
+        },
+        {
+          url: "loading('https://teslawaze.azurewebsites.net')",
+          image: "waze.svg",
+          name: "TeslaWaze",
+          desc: "Live traffic map",
+          geo: false,
+        },
+      ];
+
+      const quickAccess = [
+        
+        {
+          url: "showDialog('iframe', 'https://teslaunch.helioscommand.com/')",
+          image: "androidauto.svg",
+          name: "Android Auto",
+          desc: "Connect with Android",
+          geo: false,
+        },
+        {
+          url: "loading('spacedesk.html?connectTo=99.104.10.10')",
+          image: "darkmode.svg",
+          name: "SpaceDesk",
+          desc: "ScreenShare",
+          geo: false,
+        },
+        {
+          url: "showDialog('waze')",
+          image: "waze.svg",
+          name: "Waze",
+          desc: "Live traffic",
+          geo: false,
+        },
+        {
+          url: "loading('https://google.com')",
+          image: "google.svg",
+          name: "Google",
+          desc: "Web search",
+          geo: false,
+        },
+        {
+          url: "loading('https://abetterrouteplanner.com')",
+          image: "abrp.png",
+          name: "Route Planner",
+          desc: "Charging route",
+          geo: false,
+        },
+        {
+          url: "toggleDarkMode()",
+          image: "darkmode.svg",
+          name: "Dark Mode",
+          desc: "Switch modes",
+          id: "darkmodelogo",
+          geo: false,
+        },
+      ];
+
+      const games = [
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/knife-rain/A-HUAWEIAPP')", 
+          image: "kniferain.jpg", 
+          name: "Knife Rain", 
+          desc: "Skillfully throw knives",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/fruit-break/A-HUAWEIAPP')", 
+          image: "fruitbreak.jpg", 
+          name: "Fruit Ninja", 
+          desc: "Slice and dice fruit",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/swooop/A-HUAWEIAPP')", 
+          image: "swoop.jpg", 
+          name: "Swoop", 
+          desc: "Fly to collect coins",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/cut-the-rope/A-HUAWEIAPP')", 
+          image: "cuttherope.jpg", 
+          name: "Cut the Rope", 
+          desc: "Feed the Om Nom",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/parking-panic/A-HUAWEIAPP')", 
+          image: "parkingpanic.jpg", 
+          name: "Parking Panic", 
+          desc: "Park the cars",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/element-blocks/A-HUAWEIAPP')", 
+          image: "elementblocks.jpg", 
+          name: "Element Blocks", 
+          desc: "Tetris without falling",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/crazy-hen-level/A-HUAWEIAPP')", 
+          image: "crazyhen.jpg", 
+          name: "Crazy Hen", 
+          desc: "Cross the road",
+          geo: false 
+        },
+        { 
+          url: "showDialog('iframe', 'https://play.famobi.com/cubito/A-HUAWEIAPP')", 
+          image: "cubito.jpg", 
+          name: "Cubito", 
+          desc: "Jump the cubes",
+          geo: false 
+        },
+      ];
+
+
+      var services = baseServices;
+
+      if (localStorage.getItem("hidden")) {
+        var hiddenItems = JSON.parse(localStorage.getItem("hidden"));
+        services = baseServices.filter(
+          (x) => !hiddenItems.find((h) => h === x.image)
+        );
+      }
+
+      for (const obj of services.reverse()) {
+        document
+          .getElementById("services")
+          .insertAdjacentHTML(
+            "afterbegin",
+            `<div class="item">
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" id="${obj["id"]}" width="100%" height="100%" class="logo" /></button>
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`
+          );
+      }
+
+      for (const obj of quickAccess.reverse()) {
+        document
+          .getElementById("quickAccess")
+          .insertAdjacentHTML(
+            "afterbegin",
+            `<div class="item">
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" id="${obj["id"]}" /></button>              
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`  
+          );
+      }
+
+      for (const obj of games.reverse()) {
+        document
+          .getElementById("games")
+          .insertAdjacentHTML(
+            "afterbegin",
+            `<div class="item">
+              <button onClick="${obj["url"]}", ${obj["geo"]})"><img src="img/${obj["image"]}" alt="${obj["image"]}" width="100%" height="100%" class="logo" id="games" /></button>              
+              <h3>${obj["name"]}</h3>
+              <h4 class="text-color-sec">${obj["desc"]}</h4>
+             </div>`  
+          );
+      }
+    </script>
+
+    <script type="text/javascript" src="js.js?r=11"></script>
+  </body>
+</html>
